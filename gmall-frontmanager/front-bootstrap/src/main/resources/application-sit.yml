@@ -1,0 +1,21 @@
+# edas 开发环境
+nacos.config:
+  server-addr: 10.43.223.212:8848
+  enabled: true
+  endpoint:
+  namespace: 7e95cf00-ae5e-48e7-a7ae-776cdeec28d7
+  username: nacos
+  password: nacos
+  access-key: nacos
+  secret-key: nacos
+  data-id: acm.front-manager.yml
+  group: acm
+  type: yaml
+  max-retry: 10
+  config-retry-time: 2333
+  config-long-poll-timeout: 46000
+  enable-remote-sync-config: true
+  auto-refresh: true
+  bootstrap:
+    enable: true
+    logEnable: true

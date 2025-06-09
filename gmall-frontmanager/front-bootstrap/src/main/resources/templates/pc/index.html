@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome,IE=edge" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <meta name="spm" content="1" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, user-scalable=no, minimal-ui, viewport-fit=cover" />
+    <meta name="renderer" content="webkit" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>GMall商城</title>
+    <link rel="stylesheet" th:href="|${cdnUi}/element-ui.css|"/>
+    <link rel="shortcut icon" th:href="|${cdnDomain}/link/favicon.svg|" />
+    <script th:src="|${cdnUi}/my.js|" value="dev"></script>
+    <script th:src="|${cdnUi}/element-ui.js|"></script>
+    <script th:src="|${cdnDomain}/fe-init/${loaderVersion}/js/shop.js|"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=83ee36b6-436f-4d05-a08c-fd1716f08fd7&lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=latlong&apikey=83ee36b6-436f-4d05-a08c-fd1716f08fd7"></script>
+    <script th:utext="|window._cdnDomain_='${cdnDomain}'|"></script>
+    <script th:utext="|my.cmsDomain='${cmsDomain}';my.restDomain='${restDomain}';my.apiDomain='${apiDomain}';my.origin='${origin}';|"></script>
+    <script th:utext="|my.ossDomain='${ossDomain}';|"></script>
+<style>
+    :root {
+      --font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+        arial, sans-serif, 'Apple Color Emoji';
+      --color-background: #fff;
+      --theme-text-color: #626d84;
+      --color-primary-10: #eaf6ef;
+      --color-primary-50: #4eb76a;
+      --color-primary-60: #2aa65c;
+      --color-primary-65: #06855f;
+      --color-primary-70: #00805f;
+      --color-primary-90: #00523d;
+      --color-secondary-10: #feecc7;
+      --color-secondary-50: #fcb016;
+      --color-secondary-60: #ee8b24;
+      --color-secondary-90: #fc9700;
+      --color-white: #fff;
+      --color-dark: #071222;
+      --color-very-dark: #060811;
+      --color-black: #000;
+      --color-success: #11d392;
+      --color-warning: #ffcc01;
+      --color-error: #fe0000;
+      --color-info: #00a9ff;
+      --color-distributor: #dff0ff;
+      --color-extra-success: var(--color-success);
+      --color-extra-warning: var(--color-warning);
+      --color-extra-error: #fd2d39;
+      --color-extra-purple: #ae01ff;
+      --color-extra-light-blue: #11bcd3;
+      --color-ex tra-blue: #0085ff;
+      --color-gray-90: #f6f7f8;
+      --color-gray-85: #f3f3f6;
+      --color-gray-80: #e2e4e9;
+      --color-gray-75: #dce1ea;
+      --color-gray-70: #d3d7de;
+      --color-gray-67: #e7e7ed;
+      --color-gray-66: #cfcfd6;
+      --color-gray-65: #cbd4de;
+      --color-gray-60: #9ba4b5;
+      --color-gray-57: #87888f;
+      --color-gray-55: #5f6e83;
+      --color-gray-40: #626d84;
+      --color-gray-20: #4c5566;
+      --color-gray-10: #262f40;
+      --color-pantone-535: #9fa0a6;
+      --color-dark-theme-10: #fafafa;
+      --color-dark-theme-20: #cdd4e2;
+      --color-dark-theme-40: #96a9c7;
+      --color-dark-theme-60: #c8c7cc;
+      --color-dark-theme-70: #4a4e5a;
+      --color-dark-theme-80: #2e3039;
+      --color-dark-theme-90: #25272d;
+      --color-dark-theme-100: #141414;
+      --color-text: var(--color-black);
+      --color-primary-gradient-10: linear-gradient(
+          0deg,
+          rgba(76, 179, 119, 0.2),
+          rgba(76, 179, 119, 0.2)
+        ),
+        #eaf6ef;
+      --color-primary-gradient-40-60: linear-gradient(90deg, #2aa65c 0%, #00805f 100%);
+      --color-primary-gradient-50-70: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        linear-gradient(90deg, #2aa65c 0%, #00805f 100%);
+      --box-shadow-5: 0px 0px 2px rgba(0, 0, 0, 0.16), 0px 2px 2px rgba(0, 0, 0, 0.16),
+        0px 1px 3px rgba(0, 0, 0, 0.16);
+      --box-shadow-10: 0 0 4px rgba(0, 0, 0, 0.08);
+      --box-shadow-20: 0 4px 8px rgba(0, 0, 0, 0.08);
+      --box-shadow-25: 0 4px 8px rgba(0, 0, 0, 0.04);
+      --box-shadow-30: 0 12px 16px rgba(0, 0, 0, 0.05);
+      --box-shadow-60: 0 4px 24px -4px rgba(0, 0, 0, 0.12), 0 24px 24px -16px rgba(0, 0, 0, 0.2),
+        0 4px 4px -4px rgba(0, 0, 0, 0.08);
+      --box-shadow-primary-20: 0px 4px 12px rgba(42, 166, 92, 0.4);
+      --box-shadow-primary-50: 0 10px 17px rgba(42, 166, 92, 0.22), 0 3px 22px rgba(42, 166, 92, 0.2),
+        0 5px 8px rgba(42, 166, 92, 0.28);
+      --inset-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.14), inset 0px 1px 5px rgba(0, 0, 0, 0.2);
+      --box-shadow-dark-theme-60: 0px 4px 24px -4px rgba(0, 0, 0, 0.29),
+        0px 39px 30px -16px rgba(0, 0, 0, 0.15), 0px 4px 4px -4px rgba(0, 0, 0, 0.05);
+      --border-radius-tiny: 4px;
+      --border-radius-small: 8px;
+      --border-radius-regular: 12px;
+      --padding-xs1: 0.125rem;
+      --padding-xs: 4px;
+      --padding-sm: 8px;
+      --padding-sm1: 0.75rem;
+      --padding-sm2: 0.875rem;
+      --padding-md: 1rem;
+      --padding-lg: 1.25rem;
+      --padding-lg1: 1.5rem;
+      --padding-lg2: 2rem;
+      --padding-xl: 2.5rem;
+      --text-xs2: 0.5rem;
+      --text-xs1: 0.625rem;
+      --text-xs: 0.75rem;
+      --text-md: 14px;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 18px;
+      --text-xl1: 20px;
+      --text-xl2: 1.75rem;
+      --text-xl2-3: 2rem;
+      --text-xl2-5: 2.25rem;
+      --text-xl3: 2.5rem;
+      --text-xl4: 3rem;
+      --text-xl5: 3.5rem;
+      --line-height-xs2: 0.625rem;
+      --line-height-xs1: 0.875rem;
+      --line-height-xs: 1rem;
+      --line-height-lg: 1.125rem;
+      --line-height-md: 1.25rem;
+      --line-height-base: 1.5rem;
+      --line-height-xl: 1.75rem;
+      --line-height-xl1: 2rem;
+      --line-height-xl2: 2.25rem;
+      --line-height-xl3: 3.5rem;
+      --line-height-xl4: 4rem;
+      --line-height-xl5: 4.5rem;
+      --weight-light: 300;
+      --weight-medium: 500;
+      --weight-semiBold: 600;
+      --weight-bold: 700;
+      --z-content: 0;
+      --z-on-content: 2;
+      --z-over-content: 5;
+      --z-layout: 15;
+      --z-drawers: 20;
+      --z-modals: 30;
+      --icon-size-base: 1.5rem;
+      --icon-size-sm: 1rem;
+      --icon-size-xs: 0.75rem;
+      --icon-size-lg: 2rem;
+
+      --border-radius: 10px;
+      --bg-color: var(--color-primary-10);
+      --color: var(--color-primary-50);
+      --border-width: 0;
+      --padding: 8px var(--padding-md);
+      --font-size: var(--text-base);
+      --font-weight: var(--weight-bold);
+      --line-height: var(--line-height-base);
+      --min-width: none;
+      --justify-content: center;
+      --align-items: center;
+
+
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      color: var(--theme-text-color);
+      background: var(--color-gray-90);
+      transition:
+        color 0.5s,
+        background-color 0.5s;
+      line-height: 1.5;
+      font-family: var(--font-family);
+      font-size: 14px;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @import './base.css';
+
+    a,
+    .green {
+      cursor: pointer;
+      text-decoration: none;
+      color: hsla(160, 100%, 37%, 1);
+      transition: 0.4s;
+      padding: 3px;
+    }
+
+    a:hover {
+      color: hsla(160, 100%, 37%, 1);
+    }
+
+    .container {
+      max-width: 1232px;
+      padding: 0 1rem;
+      margin: 0 auto;
+      width: 100%;
+      min-width: 1200px;
+    }
+
+    .icon {
+      stroke-width: 1.5;
+    }
+
+    /* 外层盒子样式 */
+    .inner {
+      background-color: var(--color-white);
+      border-radius: var(--border-radius-small);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--box-shadow-30);
+    }
+
+    input,
+    button {
+      background: none;
+      outline: none;
+      border: 0px;
+    }
+
+    a,
+    button {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-touch-callout: none;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    h1 {
+      font-size: var(--text-xl5);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    h2 {
+      font-size: var(--text-xl4);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-height-xl4);
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    h3 {
+      font-size: var(--text-xl3);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-height-xl3);
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    h4 {
+      font-size: var(--text-xl2);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-height-xl2);
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    h5 {
+      font-size: var(--text-xl1);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-height-xl1);
+      color: var(--color-dark);
+      margin: 0;
+    }
+
+    h6 {
+      font-size: 18px;
+      font-weight: var(--weight-bold);
+      line-height: var(--line-height-xl);
+      color: var(--color-dark);
+      margin: 0;
+    }
+</style>
+</head>
+<body>
+<div id="J_app"></div>
+<script th:src="|${cdnDomain}/fe-pc-shop/${loaderVersion}/js/app.js|"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.aliyun.gts.gmall.manager.front</groupId>
+        <artifactId>front-manager</artifactId>
+        <version>1.1.0.fu-SNAPSHOT</version>
+    </parent>
+    <artifactId>search-front</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.manager.front</groupId>
+            <artifactId>front-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>api-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>server-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>test-common</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>misc-generator</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.middleware</groupId>
+            <artifactId>gmall-middleware-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.aliyun.gts.gmall.middleware</groupId>
+                    <artifactId>es</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+</project>

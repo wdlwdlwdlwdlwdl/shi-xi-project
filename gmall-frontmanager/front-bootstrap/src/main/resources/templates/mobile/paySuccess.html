@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome,IE=edge" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, user-scalable=no, minimal-ui, viewport-fit=cover" />
+    <meta name="renderer" content="webkit" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>云智能电商平台</title>
+    <link rel="shortcut icon" th:href="|${cdnDomain}/link/favicon.svg|" />
+    <link rel="stylesheet" th:href="|${cdnUi}/vant-ui.css|"/>
+    <script th:src="|${cdnUi}/my.wap.js|" th:value="|${loaderVersion}|" ></script>
+    <script th:src="|${cdnUi}/vant-ui.js|"></script>
+    <script th:src="|${cdnDomain}/fe-init/${loaderVersion}/js/wap.js|"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=83ee36b6-436f-4d05-a08c-fd1716f08fd7&lang=ru_RU"
+            type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=latlong&apikey=83ee36b6-436f-4d05-a08c-fd1716f08fd7"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script th:utext="|window._cdnDomain_='${cdnDomain}'|"></script>
+    <script>
+        var _apps_ = {
+            '/member/mobileShop.html': { name: 'fe-shop', branch: 'dev' },
+            '/member/mobileMember.html': { name: 'fe-shop-base', branch: 'dev' },
+        };
+    </script>
+    <style>
+        body {
+            background-color: #F2F2F2;
+            font-size: 12px;
+            color: #15202A;
+        }
+    </style>
+<body>
+<!--<script>-->
+<!--    my.cmsDomain='//myth-dev2.hanghangohye.com/';my.restDomain='//114.55.115.59/';my.apiDomain='//47.96.102.195/';-->
+<!--</script>-->
+<script th:utext="|my.cmsDomain='${cmsDomain}';my.restDomain='${restDomain}';my.apiDomain='${apiDomain}';my.origin='${origin}';|"></script>
+<script th:utext="|my.ossDomain='${ossDomain}';|"></script>
+<div id="J_app"></div>
+<script th:src="|${cdnDomain}/fe-shop/${loaderVersion}/js/app.js|"></script>
+</body>
+</html>

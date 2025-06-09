@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.aliyun.gts.gmall.manager.front</groupId>
+        <artifactId>front-manager</artifactId>
+        <version>1.1.0.fu-SNAPSHOT</version>
+    </parent>
+    <artifactId>item-front</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.platform</groupId>
+            <artifactId>open-customized-platform-api</artifactId>
+        </dependency>
+        
+        <!-- biz -->
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.center</groupId>
+            <artifactId>user-center-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.center</groupId>
+            <artifactId>item-center-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.center</groupId>
+            <artifactId>searcher-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.center</groupId>
+            <artifactId>promotion-center-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.center</groupId>
+            <artifactId>trade-center-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.center</groupId>
+            <artifactId>misc-center-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.manager.front</groupId>
+            <artifactId>front-common</artifactId>
+        </dependency>
+        
+        <!-- framework -->
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>api-common</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>server-common</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>test-common</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>misc-generator</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.middleware</groupId>
+            <artifactId>gmall-middleware-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.aliyun.gts.gmall.middleware</groupId>
+                    <artifactId>es</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>dubbo-light-consumer</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.middleware</groupId>
+            <artifactId>oss</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.middleware</groupId>
+            <artifactId>minio</artifactId>
+        </dependency>
+        <!-- other -->
+
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-starter-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-anno</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-redis</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.manager.front</groupId>
+            <artifactId>customer-front</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.platform</groupId>
+            <artifactId>user-platform-api</artifactId>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,80 @@
+# 命名空间 流水线指定
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#   name: gmall-dev
+
+# Deployment 部署
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: front-manager-dev
+  name: front-manager-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: front-manager-dev
+  template:
+    metadata:
+      labels:
+        run: front-manager-dev
+    spec:
+      containers:
+        - image: ${IMAGE}
+          name: app
+          resources:
+            requests:
+              memory: 4096Mi
+            limits:
+              memory: 4096Mi
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: aliyun-priv-regcred
+
+---
+
+# Service 部署
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-manager-dev
+  labels:
+    test: test
+    labele2: label
+spec:
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+  selector:
+    run: front-manager-dev
+  sessionAffinity: None
+  type: ClusterIP
+
+---
+
+# Ingress 部署
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: front-manager-dev
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: front-manager-dev.${HOST}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: front-manager-dev
+                port:
+                  number: 8080
