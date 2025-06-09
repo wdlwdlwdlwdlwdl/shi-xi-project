@@ -1,0 +1,8 @@
+com.aliyun.gts.gmall.center.trade.presale.ext.EvoucherOrderBizCheckExt
+com.aliyun.gts.gmall.center.trade.presale.ext.EvoucherOrderFeatureExt
+com.aliyun.gts.gmall.center.trade.presale.ext.EvoucherOrderReceiverExt
+com.aliyun.gts.gmall.center.trade.presale.ext.EvoucherPriceCalcExt
+com.aliyun.gts.gmall.center.trade.presale.ext.EvoucherReversalCreateExt
+com.aliyun.gts.gmall.center.trade.presale.ext.EvoucherReversalFeeExt
+com.aliyun.gts.gmall.center.trade.presale.ext.EvoucherReversalProcessExt
+com.aliyun.gts.gmall.center.trade.presale.ext.EvoucherScheduleTaskExt

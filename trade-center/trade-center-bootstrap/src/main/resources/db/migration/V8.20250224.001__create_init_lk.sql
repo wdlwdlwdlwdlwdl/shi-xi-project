@@ -1,0 +1,1 @@
+ALTER TABLE tc_order ADD COLUMN `pay_cart_id` varchar(100) DEFAULT NULL COMMENT '支付凭证ID' ;

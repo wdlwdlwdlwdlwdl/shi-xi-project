@@ -1,0 +1,5 @@
+com.aliyun.gts.gmall.center.trade.presale.ext.PresaleCheckPayExt
+com.aliyun.gts.gmall.center.trade.presale.ext.PresaleOrderBizCheckExt
+com.aliyun.gts.gmall.center.trade.presale.ext.PresalePriceCalcExt
+com.aliyun.gts.gmall.center.trade.presale.ext.PresaleStepOrderCreateExt
+com.aliyun.gts.gmall.center.trade.presale.ext.PresaleStepOrderProcessExt

@@ -1,0 +1,14 @@
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllBizRollbackExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllOrderBizCheckExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllOrderBizCodeExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllOrderCreateEdgeExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllOrderFeatureExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllOrderInventoryExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllOrderSaveExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllOrderSearchParamExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllOrderSeparateFeeExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllOrderStatusChangeExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllPriceCalcExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllReversalCreateExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllReversalFeeExt
+com.aliyun.gts.gmall.center.trade.matchall.ext.MatchAllScheduleTaskExt

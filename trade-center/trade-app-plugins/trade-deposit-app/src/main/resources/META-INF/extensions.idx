@@ -1,0 +1,4 @@
+com.aliyun.gts.gmall.center.trade.deposit.ext.DepositOrderBizCheckExt
+com.aliyun.gts.gmall.center.trade.deposit.ext.DepositPriceCalcExt
+com.aliyun.gts.gmall.center.trade.deposit.ext.DepositStepOrderCreateExt
+com.aliyun.gts.gmall.center.trade.deposit.ext.DepositStepOrderProcessExt

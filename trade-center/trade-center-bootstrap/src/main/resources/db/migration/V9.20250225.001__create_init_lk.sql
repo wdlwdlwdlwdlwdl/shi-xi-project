@@ -1,0 +1,1 @@
+ALTER TABLE tc_order ADD COLUMN `category_commission_rate` int(10) DEFAULT NULL COMMENT '多佣金费率' ;

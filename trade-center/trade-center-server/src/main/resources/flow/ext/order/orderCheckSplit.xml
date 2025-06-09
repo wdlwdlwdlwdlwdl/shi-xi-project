@@ -1,0 +1,44 @@
+<process name="flow/ext/order/orderCheckSplit" alias="订单拆分下单查询 -- 复用确认订单流程">
+
+    <start name="start" alias="流程开始">
+        <paths>
+            <path to="argumentCheck"/>
+        </paths>
+    </start>
+
+    <state name="argumentCheck" alias="基本入参检查">
+        <invokes>
+            <node id="argumentCheckHandler"/>
+        </invokes>
+        <paths>
+            <path to="bizProcess"/>
+        </paths>
+    </state>
+
+    <state name="bizProcess" alias="业务流程">
+        <invokes>
+            <!-- 商品查询 -->
+            <node id="confirmOrderItemHandler4Split"/>
+            <!-- 分支判断,商品为空则跳过 -->
+            <node id="checkSkipAllHandler" return="skipAll" />
+        </invokes>
+        <paths>
+            <path to="end" expr="skipAll" />
+            <path to="bizProcess2" expr="!skipAll" />
+        </paths>
+    </state>
+
+    <state name="bizProcess2" alias="业务流程2">
+        <invokes>
+            <!-- 基本字段填充 -->
+            <node id="confirmOrderFillupHandler"/>
+            <!-- 营销查询 -->
+            <node id="confirmOrderPromotionHandler"/>
+        </invokes>
+        <paths>
+            <path to="end" />
+        </paths>
+    </state>
+
+    <state name="end" alias="流程结束"/>
+</process>
