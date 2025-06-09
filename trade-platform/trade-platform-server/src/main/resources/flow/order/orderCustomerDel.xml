@@ -1,0 +1,25 @@
+<process name="flow/order/orderCustomerDel" alias="买家删除订单">
+    <start name="start" alias="买家删除订单start">
+        <paths>
+            <path to="custDelOrderCheck"/>
+        </paths>
+    </start>
+    <state name="custDelOrderCheck" alias="前置校验">
+        <invokes>
+            <node id="custDelOrderCheckHandler" in="primaryId" return="success"/>
+        </invokes>
+        <paths>
+            <path to="custDelOrder"/>
+        </paths>
+    </state>
+
+    <state name="custDelOrder" alias="买家删除订单">
+        <invokes>
+            <node id="custDelOrderHandler" in="primaryId" return="noReturn" />
+        </invokes>
+        <paths>
+            <path to="end"/>
+        </paths>
+    </state>
+    <state name="end" alias="买家删除订单end"/>
+</process>

@@ -1,0 +1,16 @@
+<process name="flow/pay/confirmPay" alias="确认支付">
+    <start name="start" alias="确认支付">
+        <paths>
+            <path to="confirmPayBiz"/>
+        </paths>
+    </start>
+    <state name="confirmPayBiz" alias="确认支付处理">
+        <invokes>
+            <node id="confirmPayHandler" in="req" return="resp"/>
+        </invokes>
+        <paths>
+            <path to="end"/>
+        </paths>
+    </state>
+    <state name="end" alias="确认支付end"/>
+</process>

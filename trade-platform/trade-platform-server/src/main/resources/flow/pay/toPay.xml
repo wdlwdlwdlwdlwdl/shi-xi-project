@@ -1,0 +1,16 @@
+<process name="flow/pay/toPay" alias="发起支付流程">
+    <start name="start" alias="发起支付流程start">
+        <paths>
+            <path to="toPayBiz"/>
+        </paths>
+    </start>
+    <state name="toPayBiz" alias="支付处理">
+        <invokes>
+            <node id="toPayHandler" in="req" return="resp"/>
+        </invokes>
+        <paths>
+            <path to="end"/>
+        </paths>
+    </state>
+    <state name="end" alias="发起支付流程end"/>
+</process>

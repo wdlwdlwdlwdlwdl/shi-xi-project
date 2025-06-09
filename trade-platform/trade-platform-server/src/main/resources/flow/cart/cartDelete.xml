@@ -1,0 +1,33 @@
+<process name="flow/cart/cartDelete" alias="删除购物车">
+
+    <start name="start" alias="流程开始">
+        <paths>
+            <path to="argumentCheck"/>
+        </paths>
+    </start>
+
+    <state name="argumentCheck" alias="基本入参检查">
+        <invokes>
+            <node id="argumentCheckHandler"/>
+        </invokes>
+        <paths>
+            <path to="bizProcess"/>
+        </paths>
+    </state>
+
+    <state name="bizProcess" alias="业务流程">
+        <invokes>
+            <!-- 删除主表数据 -->
+<!--            <node id="deleteCartHandler"/>-->
+
+<!--            购物车通过IDS直接删除 不能通过查询再删 因为支付方式会变 可能删的不对！！*/-->
+            <node id="deleteNewCartHandler"/>
+
+        </invokes>
+        <paths>
+            <path to="end" />
+        </paths>
+    </state>
+
+    <state name="end" alias="流程结束"/>
+</process>

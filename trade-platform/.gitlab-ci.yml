@@ -1,0 +1,6 @@
+variables:
+  SHOULD_CONTAIN_ASSETS: 'false'
+include:
+  - project: '${CI_PROJECT_NAMESPACE}/gitlab-ci'
+    ref: 'main'
+    file: 'deploy/.gitlab-ci-java-template.yml'

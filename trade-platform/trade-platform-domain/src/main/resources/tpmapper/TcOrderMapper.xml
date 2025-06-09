@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aliyun.gts.gmall.platform.trade.persistence.mapper.TcOrderMapper">
+    <resultMap id="CountMap" type="com.aliyun.gts.gmall.platform.trade.common.domain.KVDO">
+        <result column="order_status" property="key"/>
+        <result column="total" property="value" javaType="java.lang.Integer"/>
+    </resultMap>
+
+    <resultMap id="OrderResultMap" type="com.aliyun.gts.gmall.platform.trade.domain.dataobject.TcOrderDO"></resultMap>
+
+    <sql id="querySoldCondition">
+        <where>
+            1=1
+            <if test="sellerId!=null">
+            and seller_id = #{sellerId}
+            </if>
+            and primary_order_id in
+            <foreach
+                collection="primaryOrderIds" item="primaryId"
+                open="(" separator="," close=")">#{primaryId}
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="queryBoughtCondition">
+        <where>
+            cust_id = #{custId}
+            and cust_deleted = 0
+            <if test="status!=null">and order_status = #{status}</if>
+            <if test="evaluate != null"> and evaluate = #{evaluate}</if>
+            <if test="statusList != null">
+                and order_status in
+                <foreach
+                    collection="statusList" item="statusItem"
+                    open="(" separator="," close=")">#{statusItem}
+                </foreach>
+            </if>
+            <if test="primaryOrderIds != null">
+                and primary_order_id in
+                <foreach
+                    collection="primaryOrderIds" item="primaryId"
+                    open="(" separator="," close=")">#{primaryId}
+                </foreach>
+            </if>
+            <if test="primaryOrderFlag != null"> and primary_order_flag = #{primaryOrderFlag}</if>
+        </where>
+    </sql>
+
+    <sql id="columns">
+        id,
+        primary_order_id,
+        order_id,
+        primary_order_flag,
+        biz_code,
+        order_status,
+        primary_order_status,
+        order_attr,
+        snapshot_path,
+        order_channel,
+        evaluate,
+        reversal_type,
+        cust_id,
+        cust_name,
+        cust_memo,
+        item_id,
+        sku_id,
+        sku_desc,
+        item_title,
+        item_quantity,
+        item_pic,
+        item_feature,
+        order_price,
+        sale_price,
+        real_price,
+        order_fee_attr,
+        promotion_attr,
+        gmt_create,
+        gmt_modified,
+        receive_info,
+        seller_id,
+        seller_name,
+        version,
+        bin_or_iin,
+        first_name,
+        last_name,
+        loan_cycle,
+        sales_info,
+        cancel_code,
+        display_order_id
+    </sql>
+
+    <select id="countByStatus" resultMap="CountMap">
+        select order_status , count(*) as total
+        from tc_order where cust_id=#{custId} and
+        primary_order_flag=1 and
+        order_status in
+            <foreach collection="statusList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        group by order_status
+    </select>
+
+    <select id="queryBoughtOrders" resultMap="OrderResultMap" >
+        select
+        <include refid="columns" />
+        from tc_order
+        <include refid="queryBoughtCondition" />
+        order by gmt_create desc LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+
+    <select id="querySoldOrders" resultMap="OrderResultMap" >
+        select
+        <include refid="columns" />
+        from tc_order
+        <include refid="querySoldCondition" />
+         order by gmt_create desc
+    </select>
+
+    <select id="countBoughtOrders" resultType="java.lang.Integer" >
+        select count(*) from tc_order
+        <include refid="queryBoughtCondition" />
+    </select>
+
+    <!-- 根据商家id统计订单 -->
+    <select id="statisticsBySellerId" resultType="com.aliyun.gts.gmall.platform.trade.domain.entity.order.OrderStatistics">
+    SELECT
+        seller_id,
+        COUNT(CASE WHEN order_status != 61 THEN 1 ELSE 0 END) AS total_count,
+        SUM(CASE WHEN order_status = #{orderStatus} THEN 1
+        ELSE 0 END) AS cancel_count,
+        SUM(CASE WHEN (order_status=69) AND gmt_create &gt;= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN 1 ELSE 0 END) AS total_complete_count_last_30_days,
+        SUM(CASE WHEN gmt_create &gt;= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN 1 ELSE 0 END) AS total_count_last_30_days,
+        SUM(CASE WHEN (order_status = #{orderStatus}) AND gmt_create &gt;= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN 1 ELSE 0 END) AS cancel_count_last_30_days
+    FROM
+        tc_order
+    WHERE
+        primary_order_flag = 1
+        <if test="sellerIds != null">
+            and seller_id in
+            <foreach open="(" close=")" collection="sellerIds" item="item"  separator=",">
+                #{item}
+            </foreach>
+        </if>
+        GROUP BY seller_id;
+    </select>
+
+    <!-- 根据商家id统计订单 -->
+    <select id="statisticsBySeller" resultType="com.aliyun.gts.gmall.platform.trade.domain.entity.order.OrderStatistics">
+        SELECT
+        seller_id,
+        COUNT(*) AS total_count
+        FROM
+        tc_order
+        WHERE
+        seller_id IN
+        <foreach open="(" close=")" collection="sellerIds" item="item"  separator=",">
+            #{item}
+        </foreach>
+        AND primary_order_flag = 1
+        GROUP BY seller_id;
+    </select>
+
+    <!-- 根据取消原因商家-->
+    <select id="statisticsSellerByCancelCodeAndTime" resultType="com.aliyun.gts.gmall.platform.trade.api.dto.output.reversal.MainReversalDTO">
+        SELECT
+        DISTINCT seller_id
+        FROM
+        tc_order
+        WHERE
+        primary_order_status = 72
+        <if test="reasonCode!=null">
+            and cancel_code = #{reasonCode}
+        </if>
+        <if test="startTime != null and endTime != null">
+            AND gmt_create BETWEEN #{startTime}
+            AND #{endTime}
+        </if>
+        AND primary_order_flag = 1
+        GROUP BY seller_id;
+    </select>
+
+    <select id="statisticsOrderByCancelCodeAndTime" resultType="java.lang.Integer">
+        SELECT
+        count(1)
+        FROM
+        tc_order
+        WHERE
+        primary_order_status= 72
+        <if test="sellerId!=null">
+            and seller_id = #{sellerId}
+        </if>
+        <if test="reasonCode!=null">
+            and cancel_code = #{reasonCode}
+        </if>
+        <if test="startTime != null and endTime != null">
+            AND gmt_create BETWEEN #{startTime}
+            AND #{endTime}
+        </if>
+        AND primary_order_flag = 1
+    </select>
+
+
+    <select id="statisticsOrderByTime" resultType="java.lang.Integer">
+        SELECT
+        count(1)
+        FROM
+        tc_order
+        WHERE
+        primary_order_flag = 1
+        <if test="sellerId!=null">
+            and seller_id = #{sellerId}
+        </if>
+        <if test="startTime != null and endTime != null">
+            AND gmt_create BETWEEN #{startTime}
+            AND #{endTime}
+        </if>
+    </select>
+</mapper>

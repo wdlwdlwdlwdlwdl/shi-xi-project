@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aliyun.gts.gmall.platform.trade.persistence.mapper.TcCancelReasonMapper">
+
+    <resultMap id="CancelResultMap" type="com.aliyun.gts.gmall.platform.trade.domain.dataobject.TcCancelReasonDO"></resultMap>
+
+    <select id="queryCancelReasonList" resultMap="CancelResultMap" >
+        select *
+        from tc_cancel_reason
+        <where>
+            tc_cancel_reason = #{CancelReason}
+            order by gmt_create desc
+        </where>
+    </select>
+
+</mapper>

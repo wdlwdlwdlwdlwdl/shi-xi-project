@@ -1,0 +1,33 @@
+<process name="flow/pay/paySearch" alias="支付单列表搜索">
+    <start name="start" alias="支付单列表搜索start">
+        <paths>
+            <path to="paySearchParam"/>
+        </paths>
+    </start>
+    <state name="paySearchParam" alias="准备搜索参数">
+        <invokes>
+            <node id="paySearchParamHandler" in="orderPayQueryRpcReq" return="simpleSearchRequest"/>
+        </invokes>
+        <paths>
+            <path to="paySearch"/>
+        </paths>
+    </state>
+    <state name="paySearch" alias="发起搜索">
+        <invokes>
+            <node id="paySearchHandler" in="simpleSearchRequest" return="listPay"/>
+        </invokes>
+        <paths>
+            <path to="paySearchResult"/>
+        </paths>
+    </state>
+
+    <state name="paySearchResult" alias="处理搜索结果">
+        <invokes>
+            <node id="paySearchResultHandler" in="listPay" return="flowNodeResult" />
+        </invokes>
+        <paths>
+            <path to="end"/>
+        </paths>
+    </state>
+    <state name="end" alias="支付单列表搜索end"/>
+</process>

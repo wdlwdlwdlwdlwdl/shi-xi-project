@@ -1,0 +1,33 @@
+<process name="flow/order/orderSellerSearch" alias="已卖出订单列表搜索">
+    <start name="start" alias="已卖出订单列表搜索start">
+        <paths>
+            <path to="sellerOrderSearchParam"/>
+        </paths>
+    </start>
+    <state name="sellerOrderSearchParam" alias="准备搜索参数">
+        <invokes>
+            <node id="sellerOrderSearchParamHandler" in="sellerOrderQueryRpcReq" return="simpleSearchRequest"/>
+        </invokes>
+        <paths>
+            <path to="orderSearch"/>
+        </paths>
+    </state>
+    <state name="orderSearch" alias="发起搜索">
+        <invokes>
+            <node id="orderSearchHandler" in="simpleSearchRequest" return="listOrder"/>
+        </invokes>
+        <paths>
+            <path to="sellerOrderSearchResult"/>
+        </paths>
+    </state>
+
+    <state name="sellerOrderSearchResult" alias="处理搜索结果">
+        <invokes>
+            <node id="sellerOrderSearchResultHandler" in="listOrder" return="flowNodeResult" />
+        </invokes>
+        <paths>
+            <path to="end"/>
+        </paths>
+    </state>
+    <state name="end" alias="已卖出订单列表搜索end"/>
+</process>

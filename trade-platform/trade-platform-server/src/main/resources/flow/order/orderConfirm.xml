@@ -1,0 +1,73 @@
+<process name="flow/order/orderConfirm" alias="确定订单信息查询">
+
+    <start name="start" alias="流程开始">
+        <paths>
+            <path to="argumentCheck"/>
+        </paths>
+    </start>
+
+    <state name="argumentCheck" alias="基本入参检查">
+        <invokes>
+            <node id="argumentCheckHandler"/>
+        </invokes>
+        <paths>
+            <path to="bizProcess"/>
+        </paths>
+    </state>
+
+    <state name="bizProcess" alias="业务流程">
+        <invokes>
+            <!-- 商品查询 -->
+            <!--  <node id="confirmOrderItemHandler"/> -->
+            <!-- 基本字段填充 -->
+            <!-- <node id="confirmOrderFillupHandler"/>  -->
+            <!-- 营销查询 -->
+            <!-- <node id="confirmOrderPromotionHandler"/>  -->
+            <!-- 买家查询、处理 -->
+            <!-- <node id="confirmOrderCustomerHandler"/> -->
+            <!-- 库存校验 -->
+            <!-- <node id="confirmOrderInventoryHandler"/>  -->
+            <!-- 收货地址校验、处理 -->
+            <!-- <node id="confirmOrderReceiverHandler"/>  -->
+            <!-- 业务扩展校验 -->
+            <!-- <node id="confirmOrderBizCheckHandler"/>  -->
+            <!-- 价格计算 -->
+            <!--  <node id="confirmOrderPriceHandler"/>  -->
+            <!-- 多阶段处理 -->
+            <!--<node id="confirmStepOrderHandler"/>  -->
+            <!-- 下单token处理 -->
+            <!-- <node id="confirmOrderTokenHandler"/>  -->
+            <!-- 结果数据转换 -->
+            <!-- <node id="confirmOrderResultHandler"/>  -->
+            <!-- 商品查询 & 拆单  -->
+            <node id="confirmOrderNewItemHandler"/>
+            <!---->
+<!--            <node id="confirmOrderSplitNewHandler"/>-->
+            <!-- 买家查询处理 -->
+            <node id="confirmOrderNewCustomerHandler"/>
+            <!-- 买家收货地址校验、处理 -->
+            <node id="confirmOrderNewReceiverHandler"/>
+            <!-- 营销查询 -->
+            <node id="confirmOrderNewPromotionHandler"/>
+            <!-- 库存校验 没有库存 不用处理 -->
+            <!--  <node id="confirmOrderInventoryHandler"/>-->
+            <!-- 下单校验check -->
+            <node id="confirmOrderNewBizCheckHandler"/>
+            <!-- 商品价格计算 -->
+            <node id="confirmOrderNewPriceHandler"/>
+            <!-- 多支付阶段商品处理 -->
+            <node id="confirmStepOrderNewHandler"/>
+            <!-- 填充数据 -->
+            <node id="confirmOrderNewFillupHandlerCenter"/>
+            <!-- 下单token处理 -->
+            <node id="confirmOrderNewTokenHandler"/>
+            <!-- 结果数据转换 -->
+            <node id="confirmOrderNewResultHandler"/>
+        </invokes>
+        <paths>
+            <path to="end" />
+        </paths>
+    </state>
+
+    <state name="end" alias="流程结束"/>
+</process>

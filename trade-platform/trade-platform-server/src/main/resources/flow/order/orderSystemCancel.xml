@@ -1,0 +1,25 @@
+<process name="flow/order/orderSystemCancel" alias="系统取消">
+    <start name="start" alias="系统取消start">
+        <paths>
+            <path to="orderStatusChange"/>
+        </paths>
+    </start>
+    <state name="orderStatusChange" alias="修改状态为系统取消">
+        <invokes>
+            <node id="orderCancelChangeHandler" in="orderStatus" return="orderList"/>
+        </invokes>
+        <paths>
+            <path to="orderAutoCancelMsgSendHandler"/>
+        </paths>
+    </state>
+
+    <state name="orderAutoCancelMsgSendHandler" alias="发送订单消息">
+        <invokes>
+            <node id="orderAutoCancelMsgSendHandler" in="orderList" return="flowNodeResult" />
+        </invokes>
+        <paths>
+            <path to="end"/>
+        </paths>
+    </state>
+    <state name="end" alias="系统取消订单end"/>
+</process>

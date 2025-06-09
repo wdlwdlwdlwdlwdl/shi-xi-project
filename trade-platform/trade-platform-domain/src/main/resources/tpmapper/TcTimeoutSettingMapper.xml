@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aliyun.gts.gmall.platform.trade.persistence.mapper.TcTimeoutSettingMapper">
+
+    <resultMap id="TimeoutResultMap" type="com.aliyun.gts.gmall.platform.trade.domain.dataobject.TcTimeoutSettingDO"></resultMap>
+
+    <select id="queryTimeoutSettingList" resultMap="TimeoutResultMap" >
+        select *
+        from tc_timeout_setting
+        <where>
+          order_status = #{orderStatus}
+        order by gmt_create desc
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,40 @@
+<process name="flow/cart/cartAdd" alias="添加购物车">
+
+    <start name="start" alias="流程开始">
+        <paths>
+            <path to="argumentCheck"/>
+        </paths>
+    </start>
+
+    <state name="argumentCheck" alias="基本入参检查">
+        <invokes>
+            <node id="argumentCheckHandler"/>
+        </invokes>
+        <paths>
+            <path to="bizProcess"/>
+        </paths>
+    </state>
+
+    <state name="bizProcess" alias="业务流程">
+        <invokes>
+            <!-- 入参转换 -->
+            <node id="addCartConvertHandler"/>
+            <!-- 查主表，处理合并逻辑 -->
+            <node id="addCartMergeHandler"/>
+            <!-- 购物车上限数量控制 -->
+            <node id="addCartQtyLimitHandler"/>
+            <!-- 商品、库存查询校验 -->
+            <!-- <node id="addCartItemHandler"/> -->
+            <node id="addCartCustomerHandler"/>
+            <!-- 业务限制加购规则, 目前为空 -->
+            <node id="addCartBizLimitHandler"/>
+            <!-- 保存数据 -->
+            <node id="addCartSaveHandler"/>
+        </invokes>
+        <paths>
+            <path to="end" />
+        </paths>
+    </state>
+
+    <state name="end" alias="流程结束"/>
+</process>

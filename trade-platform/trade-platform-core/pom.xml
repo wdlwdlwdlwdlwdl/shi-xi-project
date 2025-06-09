@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>trade-platform</artifactId>
+        <groupId>com.aliyun.gts.gmall.platform</groupId>
+        <version>1.1.0.fu-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>trade-platform-core</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.platform</groupId>
+            <artifactId>trade-platform-infrastructure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>extension-engine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.platform</groupId>
+            <artifactId>trade-platform-common</artifactId>
+        </dependency>
+        <!--dependency>
+            <groupId>com.aliyun.gts.gmall.platform</groupId>
+            <artifactId>trade-platform-api</artifactId>
+        </dependency -->
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.center</groupId>
+            <artifactId>searcher-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>process-engine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>log-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>pay-component</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.platform</groupId>
+            <artifactId>open-customized-platform-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.middleware</groupId>
+            <artifactId>oss</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.schedulerx</groupId>
+            <artifactId>schedulerx2-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>domain-extend</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.framework</groupId>
+            <artifactId>log-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.middleware</groupId>
+            <artifactId>xxljob</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.platform</groupId>
+            <artifactId>gim-platform-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun.gts.gmall.center</groupId>
+            <artifactId>misc-center-api</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,29 @@
+<process name="flow/cart/cartItemV2QueryCount" alias="购物车商品数量查询V2">
+
+    <start name="start" alias="流程开始">
+        <paths>
+            <path to="argumentCheck"/>
+        </paths>
+    </start>
+
+    <state name="argumentCheck" alias="基本入参检查">
+        <invokes>
+            <node id="argumentCheckHandler"/>
+        </invokes>
+        <paths>
+            <path to="bizProcess"/>
+        </paths>
+    </state>
+
+    <state name="bizProcess" alias="业务流程">
+        <invokes>
+            <!-- 数量查询 -->
+            <node id="cartItemV2QueryCountHandler"/>
+        </invokes>
+        <paths>
+            <path to="end" />
+        </paths>
+    </state>
+
+    <state name="end" alias="流程结束"/>
+</process>

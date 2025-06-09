@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aliyun.gts.gmall.platform.trade.persistence.mapper.TcSumOrderMapper">
+
+    <resultMap id="SummaryResultMap" type="com.aliyun.gts.gmall.platform.trade.domain.dataobject.TcOrderSummaryDO"></resultMap>
+
+    <insert id="batchInsert" >
+        insert into `tc_order_summary`
+        (
+        seller_id,order_num,cancel_order_num,cancel_rate,create_time,statistic_date
+        )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.sellerId} , #{item.orderNum} , #{item.cancelOrderNum}, #{item.cancelRate}, now(),#{item.statisticDate})
+        </foreach>
+    </insert>
+
+    <select id="querySummaryList" resultMap="SummaryResultMap" >
+        select *
+        from tc_order_summary
+        <where>
+            1=1
+            <if test="statisticDate != null ">
+                AND  statistic_date = #{statisticDate}
+            </if>
+            <if test="isSend != null ">
+                AND is_send = #{isSend}
+            </if>
+            order by create_time desc
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aliyun.gts.gmall.platform.trade.persistence.mapper.TcEvaluationMapper">
+    <!-- 根据商家id统计订单 -->
+    <select id="statisticsRateBySeller" resultType="com.aliyun.gts.gmall.platform.trade.domain.entity.evaluation.EvaluationRate">
+        select
+        COUNT(*) AS "totalCount",
+        ROUND(AVG(rate_score),1) AS "rateScore",
+        SUM(CASE WHEN rate_score = 1 THEN 1 ELSE 0 END) AS "oneLevelCount",
+        SUM(CASE WHEN rate_score = 2 THEN 1 ELSE 0 END) AS "twoLevelCount",
+        SUM(CASE WHEN rate_score = 3 THEN 1 ELSE 0 END) AS "threeLevelCount",
+        SUM(CASE WHEN rate_score = 4 THEN 1 ELSE 0 END) AS "fourLevelCount",
+        SUM(CASE WHEN rate_score = 5 THEN 1 ELSE 0 END) AS "fiveLevelCount"
+        FROM tc_evaluation a
+        where a.item_id !=0
+        <if test="sellerId!=null">
+            and a.seller_id = #{sellerId}
+        </if>
+        <if test="skuId!=null">
+            and a.sku_id = #{skuId}
+        </if>
+        and JSON_EXTRACT(a.extend, '$.evaluationApproveStatus') = 2
+        and JSON_EXTRACT(a.extend, '$.evType') = 1
+    </select>
+
+    <select id="queryRatePicList" resultType="com.aliyun.gts.gmall.platform.trade.domain.dataobject.TcEvaluationDO">
+        SELECT
+        id,
+        reply_id,
+        primary_order_id,
+        order_id,
+        item_id,
+        sku_id,
+        cust_id,
+        seller_id,
+        rate_score,
+        rate_desc,
+        rate_pic,
+        gmt_create,
+        gmt_modified,
+        bin_or_iin
+        FROM
+        tc_evaluation a
+        WHERE a.item_id !=0
+        and  a.rate_pic is not null
+        <if test="sellerId!=null">
+            and a.seller_id = #{sellerId}
+        </if>
+        <if test="itemId!=null">
+            and a.item_id = #{itemId}
+        </if>
+        <if test="skuId!=null">
+            and a.sku_id = #{skuId}
+        </if>
+        order by gmt_create desc
+    </select>
+
+
+    <select id="getEvaluationList" resultType="com.aliyun.gts.gmall.platform.trade.domain.dataobject.TcEvaluationDO">
+        SELECT
+        id,
+        reply_id,
+        primary_order_id,
+        order_id,
+        item_id,
+        sku_id,
+        cust_id,
+        seller_id,
+        rate_score,
+        rate_desc,
+        rate_pic,
+        gmt_create,
+        gmt_modified,
+        extend,
+        bin_or_iin
+        FROM
+        tc_evaluation a
+        WHERE a.item_id !=0
+        <if test="primaryOrderId!=null">
+            and a.primary_order_id = #{primaryOrderId}
+        </if>
+        <if test="orderId!=null">
+            and a.order_id = #{orderId}
+        </if>
+        order by gmt_create desc
+    </select>
+</mapper>

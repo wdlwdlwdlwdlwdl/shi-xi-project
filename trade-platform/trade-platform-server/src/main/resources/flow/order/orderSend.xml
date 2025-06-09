@@ -1,0 +1,33 @@
+<process name="flow/order/orderSend" alias="订单发货">
+    <start name="start" alias="订单发货start">
+        <paths>
+            <path to="logisticsProcess"/>
+        </paths>
+    </start>
+    <state name="logisticsProcess" alias="准备发货参数">
+        <invokes>
+            <node id="logisticsProcessHandler" in="tcLogisticsRpcReq" return="noLogisticsId"/>
+        </invokes>
+        <paths>
+            <path to="orderStatusChangeHandler"/>
+        </paths>
+    </state>
+    <state name="orderStatusChangeHandler" alias="修改状态为已发货">
+        <invokes>
+            <node id="orderStatusChangeHandler" in="orderStatus" return="orderList"/>
+        </invokes>
+        <paths>
+            <path to="orderMessageSendHandler"/>
+        </paths>
+    </state>
+
+    <state name="orderMessageSendHandler" alias="发送订单消息">
+        <invokes>
+            <node id="orderMessageSendHandler" in="orderList" return="flowNodeResult" />
+        </invokes>
+        <paths>
+            <path to="end"/>
+        </paths>
+    </state>
+    <state name="end" alias="已买到订单列表搜索end"/>
+</process>
