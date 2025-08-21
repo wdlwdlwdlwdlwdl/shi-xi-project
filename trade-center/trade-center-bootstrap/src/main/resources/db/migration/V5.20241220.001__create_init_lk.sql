@@ -1,1 +1,0 @@
-ALTER TABLE tc_order ADD COLUMN `display_order_id` varchar(100) DEFAULT NULL COMMENT '对外展示订单ID' ;

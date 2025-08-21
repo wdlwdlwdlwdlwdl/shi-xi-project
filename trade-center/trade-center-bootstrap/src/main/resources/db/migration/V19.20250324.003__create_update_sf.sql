@@ -1,1 +1,0 @@
-ALTER TABLE tc_delivery_fee ADD COLUMN `is_all` int DEFAULT NULL DEFAULT 0 COMMENT '全部生效' ;

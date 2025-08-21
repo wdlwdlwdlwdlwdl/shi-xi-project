@@ -1,2 +1,0 @@
-ALTER TABLE `tc_cancel_refund_log`
-    MODIFY COLUMN `id` int NOT NULL AUTO_INCREMENT FIRST;
